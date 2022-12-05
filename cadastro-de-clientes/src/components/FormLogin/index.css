@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100&family=Montserrat:wght@200&display=swap");
+
+.sectionLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Montserrat;
+}
+
+.loginFormArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 296px;
+  background: #1b1e21;
+  border-radius: 9px;
+  height: 425px;
+}
+
+.h1Container {
+  display: flex;
+  justify-content: center;
+}
+
+.login {
+  font-weight: 700;
+  font-size: 22px;
+  color: #f8f9fa;
+  margin-bottom: 27px;
+}
+
+.formAreas {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 264.66px;
+  height: 84.69px;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+.formLabel {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 0px;
+  color: #f8f9fa;
+  margin-bottom: 20px;
+}
+.semConta {
+  font-weight: 600;
+  font-size: 12px;
+  color: #868e96;
+  margin-top: 28px;
+  margin-bottom: 18px;
+}
+
+.Entrar {
+  width: 259.9px;
+  height: 38.5px;
+  background: #000046;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #e1e1e1;
+  cursor: pointer;
+}
+
+a:visited {
+  color: #e1e1e1;
+}
+
+.formInput {
+  width: 245px;
+  height: 38.5px;
+  background: #343b41;
+  border: none;
+  border-radius: 4px;
+  color: #f8f9fa;
+  padding-left: 15px;
+}
+.formInput:focus {
+  outline: none;
+  border: 0.9772px solid #f8f9fa;
+}
+
+@media (min-width: 500px) {
+  .logo {
+    width: 144.06px;
+    height: 19.97px;
+    margin-bottom: 25px;
+  }
+
+  .loginFormArea {
+    width: 490px;
+    height: 620px;
+  }
+  .login {
+    font-size: 61px;
+  }
+  .formInput {
+    width: 329.93px;
+    height: 48px;
+    font-size: 17px;
+  }
+  .formLabel {
+    font-size: 17px;
+  }
+  .loginform {
+    width: 350px;
+  }
+  .Entrar {
+    margin-top: 10px;
+    width: 344px;
+    height: 48px;
+    font-size: 16px;
+  }
+  .semConta {
+    font-size: 15px;
+  }
+}

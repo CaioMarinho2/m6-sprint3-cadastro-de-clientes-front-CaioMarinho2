@@ -1,10 +1,16 @@
 import { Switch, Route } from "react-router-dom";
+import CadastroPage from "../pages/cadastro";
+import LoginPage from "../pages/login";
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/"></Route>
+      <Route exact path="/">
+        <LoginPage />
+      </Route>
 
-      <Route exact path="/cadastro"></Route>
+      <Route exact path="/cadastro">
+        <CadastroPage />
+      </Route>
     </Switch>
   );
 }

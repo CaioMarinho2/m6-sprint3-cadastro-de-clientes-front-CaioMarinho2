@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
        <ToastContainer
         position="top-right"
         autoClose={4000}
@@ -18,9 +18,12 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        toastStyle={{
+          fontSize: "15px",
+        }}
       />
      <Routes/>
-    </div>
+    </main>
   );
 }
 
