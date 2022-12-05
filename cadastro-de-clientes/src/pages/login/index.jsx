@@ -1,13 +1,10 @@
-import FormLogin from "../../components/FormLogin"
-
+import FormLogin from "../../components/FormLogin";
 
 function LoginPage() {
-    return(
-
-<div className="login">
-      <FormLogin
-      />
-    </div>
-    )
+  return (
+    <main className="login">
+      <FormLogin />
+    </main>
+  );
 }
-export default LoginPage
+export default LoginPage;

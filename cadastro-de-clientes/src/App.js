@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <main className="App">
+    <div className="App">
        <ToastContainer
         position="top-right"
         autoClose={4000}
@@ -23,7 +23,7 @@ function App() {
         }}
       />
      <Routes/>
-    </main>
+    </div>
   );
 }
 

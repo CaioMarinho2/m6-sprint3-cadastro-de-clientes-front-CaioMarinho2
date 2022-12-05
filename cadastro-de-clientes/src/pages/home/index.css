@@ -1,0 +1,48 @@
+header {
+
+min-width: 95vw;
+
+  height: 60px;
+  padding: 0 3rem;
+  background: #000046;
+  background: -webkit-linear-gradient(to right, #1cb5e0, #000046);
+  background: linear-gradient(to right, #1cb5e0, #000046);
+  color: #f8f9fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit {
+  color: #f8f9fa;
+  background: #000046;
+  width: 140px;
+  height: 30px;
+ margin-top: 30px;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sair {
+    
+  margin-right: 20px;
+  background-color: transparent;
+  border-style: none;
+  color: #f8f9fa;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.mainHome {
+  min-height: 100vh;
+  background-color: rgb(255, 255, 255);
+}
+
+.listContainer {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  height: 40vh;
+}

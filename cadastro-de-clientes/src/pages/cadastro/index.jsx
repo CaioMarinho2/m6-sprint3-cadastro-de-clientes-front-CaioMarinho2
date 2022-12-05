@@ -2,9 +2,9 @@ import FormCadastro from "../../components/FormCadastro";
 
 function CadastroPage() {
   return (
-    <div className="cadastro">
+    <main className="cadastro">
       <FormCadastro />
-    </div>
+    </main>
   );
 }
 export default CadastroPage;

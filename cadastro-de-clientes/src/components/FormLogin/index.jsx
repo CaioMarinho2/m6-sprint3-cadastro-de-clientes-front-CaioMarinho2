@@ -12,6 +12,7 @@ function FormLogin() {
     password: yup.string().required("Senha obrigatória"),
   });
 
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -29,7 +30,8 @@ function FormLogin() {
         localStorage.setItem("@CadastroClientes:token", response.data.token);
         localStorage.setItem("@CadastroClientes:id", response.data.id);
 
-        history.push();
+        history.push("/inicio");
+        toast.success("Bem-vindo!")
       })
       .catch((error) => {
         console.log(error)
@@ -37,7 +39,6 @@ function FormLogin() {
       });
   }
 
-  const history = useHistory();
   return (
     <section className="sectionLogin">
       <div className="loginFormArea">
