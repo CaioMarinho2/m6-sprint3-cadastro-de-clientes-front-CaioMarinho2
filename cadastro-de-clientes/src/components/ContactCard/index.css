@@ -4,6 +4,7 @@
   background-color: #1cb5e0;
   flex-direction: column;
   margin-bottom: 20px;
+
 }
 
 .contactName {
@@ -51,9 +52,17 @@
   font-size: 20px;
 }
 
+.userCardContainer{
+   display: flex;
+  flex-direction: column;
+
+}
+
 @media (min-width: 764px) {
   .contact {
+
     margin-right: 15px;
     margin-left: 15px;
+    
   }
 }

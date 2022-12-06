@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import ContactCard from "../ContactCard";
+import ModalNewContact from "../NewContactModal";
 import "./index.css";
 
 function ListaContatos() {
   const UserId = localStorage.getItem("@CadastroClientes:id");
   const token = localStorage.getItem("@CadastroClientes:token");
   const [contactsList, setContactsList] = useState([]);
+  const [modalOpenNewContact, setModalOpenEditNewContact] = useState(false);
 
+  function abrirFecharModalNewContact() {
+    setModalOpenEditNewContact(!modalOpenNewContact);
+  }
+  
   useEffect(() => {
     api
       .get(`/users/profile/${UserId}`, {
@@ -45,9 +51,11 @@ function ListaContatos() {
 
   return (
     <section className="sectionContacts">
-      <button className="AddContatos" onClick={() => {}}>
+      <button className="AddContatos" onClick={abrirFecharModalNewContact}>
         Adicionar um contato
       </button>
+      {modalOpenNewContact && <ModalNewContact modalOpen={modalOpenNewContact} abrirFecharModal={abrirFecharModalNewContact} />}
+      
       <h2 className="contactsTitle">Contatos</h2>
       {contactsListRender()}
     </section>

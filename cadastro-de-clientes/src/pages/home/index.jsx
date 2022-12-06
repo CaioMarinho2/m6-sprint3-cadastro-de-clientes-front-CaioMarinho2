@@ -15,12 +15,12 @@ function HomePage() {
             localStorage.clear();
           }}
         >
-          sair
+          Sair
         </button>
       </header>
 
       <div className="listContainer">
-        <button className="edit" onClick={() => history.push()}>
+        <button className="edit" onClick={() => history.push("/editar")}>
           Editar Perfil
         </button>
         <ListaContatos />

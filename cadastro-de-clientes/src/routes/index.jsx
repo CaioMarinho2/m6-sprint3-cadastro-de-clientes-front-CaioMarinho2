@@ -1,5 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import CadastroPage from "../pages/cadastro";
+import EditarPerfil from "../pages/editarPerfil";
 import HomePage from "../pages/home";
 import LoginPage from "../pages/login";
 function Routes() {
@@ -18,7 +19,7 @@ function Routes() {
       </Route>
 
       <Route exact path="/editar">
-    
+        <EditarPerfil/>
       </Route>
       
     </Switch>

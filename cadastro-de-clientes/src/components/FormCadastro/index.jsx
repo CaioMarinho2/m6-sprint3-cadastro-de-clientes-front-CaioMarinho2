@@ -1,5 +1,5 @@
 import "./index.css";
-import { useForm,/*  useFieldArray  */} from "react-hook-form";
+import { useForm} from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../services/api";
@@ -26,16 +26,10 @@ function FormCadastro() {
   const {
     register,
     handleSubmit,
-    /*   control, */
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
   });
-
-  /* const { fields, append, remove } = useFieldArray({
-    name: "phones",
-    control,
-  }); */
 
   function Cadastro(userInfos) {
     const objectRequest = {
@@ -117,20 +111,7 @@ function FormCadastro() {
               className="formInput"
               {...register("phones")}
             ></input>
-            {/*  <button type="button" onClick={()=>append()}>adicionar Telefone</button>  */}
-            {/*  {fields.map((field, index) => (
-              <>
-                <label className="formLabel" htmlFor="phone">
-                  Telefone{index+1}
-                </label>
-                <input
-                  placeholder="Opção de contato"
-                  className="formInput"
-                  key={index}
-                  {...register(`phones.${index}`)}
-                />
-              </>
-            ))} */}
+           
             <p className="error"> {errors.phones?.message}</p>
           </div>
 

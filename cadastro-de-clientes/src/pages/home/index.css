@@ -1,6 +1,5 @@
 header {
-
-min-width: 95vw;
+  min-width: 95vw;
 
   height: 60px;
   padding: 0 3rem;
@@ -18,14 +17,13 @@ min-width: 95vw;
   background: #000046;
   width: 140px;
   height: 30px;
- margin-top: 30px;
+  margin-top: 30px;
   border-radius: 5px;
   font-size: 20px;
   cursor: pointer;
 }
 
 .sair {
-    
   margin-right: 20px;
   background-color: transparent;
   border-style: none;

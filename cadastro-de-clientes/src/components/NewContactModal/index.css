@@ -1,0 +1,140 @@
+.Modal {
+    width: 297px;
+    height: 485px;
+    position: absolute;
+    background-color: #212529;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+  }
+  
+  .Overlay {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0px;
+    background-color: rgba(18, 18, 20, 0.5);
+  }
+  
+  .closeModal {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background: #343b41;
+    height: 41px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+  
+  .cadastroContact {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    color: #f8f9fa;
+    margin-left: 10px;
+  }
+  
+  .closeBnt {
+    background-color: transparent;
+    border: none;
+    color: #868e96;
+    cursor: pointer;
+    margin-right: 10px;
+    display: flex;
+  }
+  
+  .inputNewContact {
+    width: 243.66px;
+    height: 38.5px;
+    background: #343b41;
+    border: none;
+    border-radius: 3.20867px;
+    font-size: 14px;
+    color: #f8f9fa;
+    padding-left: 14px;
+  }
+  
+  .inputNewContact:focus {
+    outline: none;
+    border: 0.9772px solid #f8f9fa;
+  }
+  
+  .labelContact {
+    font-size: 15px;
+    line-height: 0px;
+    color: #f8f9fa;
+    margin-bottom: 18px;
+    margin-top: 22px;
+  }
+  .inputsContact {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cadastroContactBnt {
+    width: 250px;
+    height: 38.5px;
+    background:#000046;
+    border: none;
+    border-radius: 5px;
+    font-size: 12.8347px;
+    color: #ffffff;
+    margin-top: 23px;
+    cursor: pointer;
+  }
+  
+  .formModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  .errorModal {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-weight: 700;
+    color: #eb052c;
+  }
+  
+  @media (min-width: 430px) {
+    .Modal {
+      width: 369px;
+      height: 525px;
+    }
+  
+    .cadastroContact {
+      margin-left: 20px;
+      font-size: 14px;
+    }
+    .inputNewContact {
+      width: 329.93px;
+      height: 48px;
+    }
+   
+    .cadastroContactBnt {
+      width: 338px;
+      height: 48px;
+      font-size: 16px;
+    }
+  
+    .labelContact {
+      font-size: 18px;
+    }
+    .closeBnt {
+      font-size: 19px;
+    }
+  
+  
+  
+    .errorModal {
+      font-size: 17px;
+    }
+  }
+  
