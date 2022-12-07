@@ -19,7 +19,7 @@ function ModalNewPhone({
 }) {
   let UserId = localStorage.getItem("@CadastroClientes:id");
   const token = localStorage.getItem("@CadastroClientes:token");
-  const {  setUserList,setUser  } = useContext(userListContext);
+  const { setUserList, setUser } = useContext(userListContext);
 
   if (owner === "contato") {
     UserId = id;
@@ -69,20 +69,20 @@ function ModalNewPhone({
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
-        const UserIdGet = localStorage.getItem("@CadastroClientes:id");
-    
+          const UserIdGet = localStorage.getItem("@CadastroClientes:id");
+
           api
             .get(`/users/profile/${UserIdGet}`, {
               headers: { Authorization: `Bearer ${token}` },
             })
             .then((response) => {
               setUserList(response.data.contacts);
-              setUser(response.data)
+              setUser(response.data);
               console.log(response.data);
             })
             .catch((error) => {
               console.log(error);
-            })
+            });
           abrirFecharModal();
 
           toast.success("Telefone Editado com sucesso!");

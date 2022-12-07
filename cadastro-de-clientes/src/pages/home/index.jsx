@@ -7,7 +7,7 @@ import { userListContext } from "../../providers/userList";
 
 function HomePage() {
   const UserId = localStorage.getItem("@CadastroClientes:id");
-  const {  setUser } = useContext(userListContext);
+  const { setUser } = useContext(userListContext);
   const token = localStorage.getItem("@CadastroClientes:token");
   const history = useHistory();
   return (
@@ -26,9 +26,9 @@ function HomePage() {
       </header>
 
       <div className="listContainer">
-        
-        <button className="edit" onClick={() => {
-        
+        <button
+          className="edit"
+          onClick={() => {
             api
               .get(`/users/profile/${UserId}`, {
                 headers: { Authorization: `Bearer ${token}` },
@@ -36,13 +36,13 @@ function HomePage() {
               .then((response) => {
                 setUser(response.data);
                 console.log(response.data);
-                history.push("/editar")
+                history.push("/editar");
               })
               .catch((error) => {
                 console.log(error);
               });
-      
-          }}>
+          }}
+        >
           Editar Perfil
         </button>
         <ListaContatos />

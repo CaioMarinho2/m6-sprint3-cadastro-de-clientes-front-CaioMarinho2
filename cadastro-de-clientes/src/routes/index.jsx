@@ -15,13 +15,12 @@ function Routes() {
       </Route>
 
       <Route exact path="/inicio">
-        <HomePage/>
+        <HomePage />
       </Route>
 
       <Route exact path="/editar">
-        <EditarPerfil/>
+        <EditarPerfil />
       </Route>
-      
     </Switch>
   );
 }

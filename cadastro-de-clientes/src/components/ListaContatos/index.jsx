@@ -9,13 +9,13 @@ function ListaContatos() {
   const UserId = localStorage.getItem("@CadastroClientes:id");
   const token = localStorage.getItem("@CadastroClientes:token");
   const [modalOpenNewContact, setModalOpenEditNewContact] = useState(false);
- 
+
   const { userList, setUserList } = useContext(userListContext);
 
   function abrirFecharModalNewContact() {
     setModalOpenEditNewContact(!modalOpenNewContact);
   }
-  
+
   useEffect(() => {
     api
       .get(`/users/profile/${UserId}`, {
@@ -32,7 +32,9 @@ function ListaContatos() {
 
   function contactsListRender() {
     if (userList.length === 0) {
-      return <h3 className="noContacts">Você ainda não possui nenhum contato</h3>;
+      return (
+        <h3 className="noContacts">Você ainda não possui nenhum contato</h3>
+      );
     }
     return (
       <ul className="contactsList">
@@ -56,8 +58,13 @@ function ListaContatos() {
       <button className="AddContatos" onClick={abrirFecharModalNewContact}>
         Adicionar um contato
       </button>
-      {modalOpenNewContact && <ModalNewContact modalOpen={modalOpenNewContact} abrirFecharModal={abrirFecharModalNewContact} />}
-      
+      {modalOpenNewContact && (
+        <ModalNewContact
+          modalOpen={modalOpenNewContact}
+          abrirFecharModal={abrirFecharModalNewContact}
+        />
+      )}
+
       <h2 className="contactsTitle">Contatos</h2>
       {contactsListRender()}
     </section>

@@ -15,7 +15,6 @@
   margin-bottom: 10px;
   font-size: 35px;
   font-weight: bolder;
-
 }
 .divLabel {
   display: flex;
@@ -23,19 +22,19 @@
   align-items: center;
   margin-top: 10px;
 }
-.buttonBack{
-    margin-top:44px;
-    background-color: #1cb5e0;
-    border-style: none;
-    font-size: 23px;
-    color: white;
-    width: 270px;
-    height: 40px;
-    border-radius: 5px;
-    cursor: pointer;
+.buttonBack {
+  margin-top: 44px;
+  background-color: #1cb5e0;
+  border-style: none;
+  font-size: 23px;
+  color: white;
+  width: 270px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
 }
-.deletarPerfil{
-  margin-top:74px;
+.deletarPerfil {
+  margin-top: 74px;
   background-color: red;
   border-style: none;
   font-size: 23px;

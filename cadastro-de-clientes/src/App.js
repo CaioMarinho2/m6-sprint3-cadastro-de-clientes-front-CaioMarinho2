@@ -1,15 +1,13 @@
 import "./reset.css";
-import './App.css';
+import "./App.css";
 import Routes from "./routes";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
-
-
 function App() {
   return (
     <div className="App">
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={4000}
         hideProgressBar={false}
@@ -23,7 +21,7 @@ function App() {
           fontSize: "15px",
         }}
       />
-     <Routes/>
+      <Routes />
     </div>
   );
 }

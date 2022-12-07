@@ -9,7 +9,7 @@ import { userListContext } from "../../providers/userList";
 
 function ContactCard({ id, name, emails, phones }) {
   const token = localStorage.getItem("@CadastroClientes:token");
-  const {  setUserList } = useContext(userListContext);
+  const { setUserList } = useContext(userListContext);
   const UserId = localStorage.getItem("@CadastroClientes:id");
   const [modalOpenNewPhone, setModalOpenEditNewPhone] = useState(false);
   const [modalOpenNewEmail, setModalOpenEditNewEmail] = useState(false);
@@ -68,7 +68,6 @@ function ContactCard({ id, name, emails, phones }) {
               phones={phones}
               emails={emails}
               name={name}
-  
             />
           )}
           <button
@@ -78,26 +77,22 @@ function ContactCard({ id, name, emails, phones }) {
                 .delete(`/contacts/delete/${id}`, {
                   headers: { Authorization: `Bearer ${token}` },
                 })
-                .then( (response) => {
+                .then((response) => {
                   console.log(response);
-                   
-                       
-                  api
-                  .get(`/users/profile/${UserId}`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                  })
-                  .then((response) => {
-                      setUserList(response.data.contacts);
-                    console.log(response.data.contacts);
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
-          
-  
 
-                  
-                   toast.success("Contato apagado com sucesso!");
+                  api
+                    .get(`/users/profile/${UserId}`, {
+                      headers: { Authorization: `Bearer ${token}` },
+                    })
+                    .then((response) => {
+                      setUserList(response.data.contacts);
+                      console.log(response.data.contacts);
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                    });
+
+                  toast.success("Contato apagado com sucesso!");
                 })
                 .catch((error) => {
                   toast.error("Algo deu errado, tente novamente mais tarde!");

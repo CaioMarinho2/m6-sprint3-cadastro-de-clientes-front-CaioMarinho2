@@ -11,9 +11,9 @@
   margin-bottom: 10px;
 }
 
-.noContacts{
-    color: black;
-    margin-top: 80px;
+.noContacts {
+  color: black;
+  margin-top: 80px;
 }
 
 .AddContatos {
@@ -34,18 +34,17 @@
   display: flex;
   margin-top: 0px;
   flex-direction: column;
-
 }
 
 @media (min-width: 764px) {
   .contactsList {
     min-height: 50vh;
-   
+
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: row;
     max-width: 100vw;
     max-height: 90vh;
-    overflow:auto;
+    overflow: auto;
   }
 }

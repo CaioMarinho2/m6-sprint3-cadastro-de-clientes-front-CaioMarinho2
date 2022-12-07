@@ -24,7 +24,7 @@ function ModalEditContact({
   const UserId = localStorage.getItem("@CadastroClientes:id");
   const [modalOpenNewPhoneEdit, setModalOpenEditNewPhoneEdit] = useState(false);
   const [modalOpenNewEmailEdit, setModalOpenEditNewEmailEdit] = useState(false);
-  const { setUserList,setUser } = useContext(userListContext);
+  const { setUserList, setUser } = useContext(userListContext);
   const [idEdit, setIdEdit] = useState("");
   const [phoneUser, setPhoneUser] = useState("");
 
@@ -125,21 +125,20 @@ function ModalEditContact({
                         headers: { Authorization: `Bearer ${token}` },
                       })
                       .then((response) => {
-                       
                         api
-                        .get(`/users/profile/${UserId}`, {
-                          headers: { Authorization: `Bearer ${token}` },
-                        })
-                        .then((response) => {
-                          setUserList(response.data.contacts);
-                          setUser(response.data)
-                          console.log(response.data);
-                        })
-                        .catch((error) => {
-                          console.log(error);
-                        })
+                          .get(`/users/profile/${UserId}`, {
+                            headers: { Authorization: `Bearer ${token}` },
+                          })
+                          .then((response) => {
+                            setUserList(response.data.contacts);
+                            setUser(response.data);
+                            console.log(response.data);
+                          })
+                          .catch((error) => {
+                            console.log(error);
+                          });
 
-                      abrirFecharModal();
+                        abrirFecharModal();
                         toast.success("Telefone Deletado com sucesso!");
                       })
                       .catch((error) => {
@@ -193,20 +192,19 @@ function ModalEditContact({
                         headers: { Authorization: `Bearer ${token}` },
                       })
                       .then((response) => {
-                        
-                          api
-                            .get(`/users/profile/${UserId}`, {
-                              headers: { Authorization: `Bearer ${token}` },
-                            })
-                            .then((response) => {
-                              setUserList(response.data.contacts);
-                              console.log(response.data.contacts);
-                            })
-                            .catch((error) => {
-                              console.log(error);
-                            });
-                  
-                          abrirFecharModal();
+                        api
+                          .get(`/users/profile/${UserId}`, {
+                            headers: { Authorization: `Bearer ${token}` },
+                          })
+                          .then((response) => {
+                            setUserList(response.data.contacts);
+                            console.log(response.data.contacts);
+                          })
+                          .catch((error) => {
+                            console.log(error);
+                          });
+
+                        abrirFecharModal();
 
                         toast.success("Contato editado com sucesso!");
                       })

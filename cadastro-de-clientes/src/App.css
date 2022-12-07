@@ -1,17 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100&family=Montserrat:wght@200&display=swap");
 
 .App {
-  background: #000046; 
-  background: -webkit-linear-gradient(
-    to right,
-    #1cb5e0,
-    #000046
-  ); 
-  background: linear-gradient(
-    to right,
-    #1cb5e0,
-    #000046
-  ); 
+  background: #000046;
+  background: -webkit-linear-gradient(to right, #1cb5e0, #000046);
+  background: linear-gradient(to right, #1cb5e0, #000046);
 
   min-height: 100vh;
   display: flex;
@@ -21,4 +13,3 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-

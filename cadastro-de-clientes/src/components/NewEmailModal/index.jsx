@@ -10,29 +10,27 @@ import { useContext } from "react";
 Modal.setAppElement("#root");
 function ModalNewEmail({ modalOpen, abrirFecharModal, id, edit, email }) {
   const token = localStorage.getItem("@CadastroClientes:token");
-  const {  setUserList,setUser  } = useContext(userListContext);
+  const { setUserList, setUser } = useContext(userListContext);
   const UserIdGet = localStorage.getItem("@CadastroClientes:id");
 
-  function editFunction(){
-    if(edit){
-        return "Editar"
+  function editFunction() {
+    if (edit) {
+      return "Editar";
     }
-    return "Cadastrar"
+    return "Cadastrar";
   }
-  
-  function emailFunction(){
-    if(email){
-        return email
+
+  function emailFunction() {
+    if (email) {
+      return email;
     }
-   
   }
 
   const formSchema = yup.object().shape({
     email: yup
       .string()
       .required("Email obrigatório")
-      .email("É necessário um email válido")
-      ,
+      .email("É necessário um email válido"),
   });
   const {
     register,
@@ -42,68 +40,65 @@ function ModalNewEmail({ modalOpen, abrirFecharModal, id, edit, email }) {
     resolver: yupResolver(formSchema),
   });
 
-  
-
   function registerEmail(data) {
     console.log(data);
     const objectRequest = {
       emails: [data.email],
     };
-  if(edit){
-    api
-      .patch(`/emails/update/${id}`, data, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        const UserIdGet = localStorage.getItem("@CadastroClientes:id");
-        api
+    if (edit) {
+      api
+        .patch(`/emails/update/${id}`, data, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          const UserIdGet = localStorage.getItem("@CadastroClientes:id");
+          api
             .get(`/users/profile/${UserIdGet}`, {
               headers: { Authorization: `Bearer ${token}` },
             })
             .then((response) => {
               setUserList(response.data.contacts);
-              setUser(response.data)
+              setUser(response.data);
               console.log(response.data);
             })
             .catch((error) => {
               console.log(error);
-            })
-        abrirFecharModal();
+            });
+          abrirFecharModal();
 
-        toast.success("Email editado com sucesso!");
-      })
-      .catch((error) => {
-        toast.error("Algo deu errado, tente novamente mais tarde!");
-        console.log(error);
-      });
-  }else{
-
-    api
-      .post(`/emails/create/${id}`, objectRequest, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        api
-        .get(`/users/profile/${UserIdGet}`, {
+          toast.success("Email editado com sucesso!");
+        })
+        .catch((error) => {
+          toast.error("Algo deu errado, tente novamente mais tarde!");
+          console.log(error);
+        });
+    } else {
+      api
+        .post(`/emails/create/${id}`, objectRequest, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
-          setUserList(response.data.contacts);
-          setUser(response.data)
-          console.log(response.data);
+          api
+            .get(`/users/profile/${UserIdGet}`, {
+              headers: { Authorization: `Bearer ${token}` },
+            })
+            .then((response) => {
+              setUserList(response.data.contacts);
+              setUser(response.data);
+              console.log(response.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+          abrirFecharModal();
+
+          toast.success("Email cadastrado com sucesso!");
         })
         .catch((error) => {
+          toast.error("Algo deu errado, tente novamente mais tarde!");
           console.log(error);
-        })
-        abrirFecharModal();
-
-        toast.success("Email cadastrado com sucesso!");
-      })
-      .catch((error) => {
-        toast.error("Algo deu errado, tente novamente mais tarde!");
-        console.log(error);
-      });
-  }
+        });
+    }
   }
 
   return (

@@ -1,5 +1,5 @@
 import "./index.css";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../services/api";
@@ -43,7 +43,7 @@ function FormCadastro() {
       .post("/users/create", objectRequest)
       .then((response) => {
         console.log(response);
-        toast.success("Cadastro feito com sucesso")
+        toast.success("Cadastro feito com sucesso");
         history.push("/");
       })
       .catch((error) => {
@@ -111,7 +111,7 @@ function FormCadastro() {
               className="formInput"
               {...register("phones")}
             ></input>
-           
+
             <p className="error"> {errors.phones?.message}</p>
           </div>
 

@@ -22,19 +22,19 @@ function FormLogin() {
   });
 
   function login(userInfos) {
-    console.log(userInfos)
+    console.log(userInfos);
     api
       .post("/login/users", userInfos)
       .then((response) => {
-        console.log(response)
+        console.log(response);
         localStorage.setItem("@CadastroClientes:token", response.data.token);
         localStorage.setItem("@CadastroClientes:id", response.data.id);
 
         history.push("/inicio");
-        toast.success("Bem-vindo!")
+        toast.success("Bem-vindo!");
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
         toast.error("Erro ao logar, Email ou Senha incorretas!");
       });
   }
