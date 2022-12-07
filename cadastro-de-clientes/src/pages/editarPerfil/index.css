@@ -34,6 +34,17 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.deletarPerfil{
+  margin-top:74px;
+  background-color: red;
+  border-style: none;
+  font-size: 23px;
+  color: white;
+  width: 170px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 .labelFormEdit {
   color: black;

@@ -4,6 +4,8 @@
   background-color: #1cb5e0;
   flex-direction: column;
   margin-bottom: 20px;
+  width: 300px;
+ 
 
 }
 
@@ -60,7 +62,8 @@
 
 @media (min-width: 764px) {
   .contact {
-
+    width: 400px;
+    
     margin-right: 15px;
     margin-left: 15px;
     

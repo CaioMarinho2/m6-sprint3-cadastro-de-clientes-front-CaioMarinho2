@@ -17,6 +17,8 @@ function FormEdit() {
   const { user, setUser } = useContext(userListContext);
  
 
+  
+
   const [idEdit, setIdEdit] = useState("");
   const [phoneUser, setPhoneUser] = useState("");
 
@@ -80,7 +82,7 @@ function FormEdit() {
       .catch((error) => {
         console.log(error);
       });
-  }, [UserId, token]);
+  }, [UserId, token,setUser]);
   return (
     <>
       <form className="formEdit" onSubmit={handleSubmit(edit)}>
