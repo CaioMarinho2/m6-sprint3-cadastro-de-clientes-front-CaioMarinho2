@@ -60,9 +60,6 @@ function ModalNewContact({ modalOpen, abrirFecharModal }) {
 
         toast.success("Contato cadastrado com sucesso!");
       })
-      .then(() => {
-        window.location.reload();
-      })
       .catch((error) => {
         toast.error("Algo deu errado, tente novamente mais tarde!");
       });
