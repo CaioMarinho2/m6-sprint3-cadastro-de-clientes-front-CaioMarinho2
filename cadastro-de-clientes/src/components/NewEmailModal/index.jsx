@@ -1,14 +1,31 @@
 import Modal from "react-modal";
-import "./index.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../services/api";
 import { toast } from "react-toastify";
+import { userListContext } from "../../providers/userList";
+import { useContext } from "react";
 
 Modal.setAppElement("#root");
-function ModalNewEmail({ modalOpen, abrirFecharModal, id }) {
+function ModalNewEmail({ modalOpen, abrirFecharModal, id, edit, email }) {
   const token = localStorage.getItem("@CadastroClientes:token");
+  const {  setUserList,setUser  } = useContext(userListContext);
+  const UserIdGet = localStorage.getItem("@CadastroClientes:id");
+
+  function editFunction(){
+    if(edit){
+        return "Editar"
+    }
+    return "Cadastrar"
+  }
+  
+  function emailFunction(){
+    if(email){
+        return email
+    }
+   
+  }
 
   const formSchema = yup.object().shape({
     email: yup
@@ -25,27 +42,68 @@ function ModalNewEmail({ modalOpen, abrirFecharModal, id }) {
     resolver: yupResolver(formSchema),
   });
 
-  function registerTech(data) {
+  
+
+  function registerEmail(data) {
     console.log(data);
     const objectRequest = {
       emails: [data.email],
     };
+  if(edit){
+    api
+      .patch(`/emails/update/${id}`, data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        const UserIdGet = localStorage.getItem("@CadastroClientes:id");
+        api
+            .get(`/users/profile/${UserIdGet}`, {
+              headers: { Authorization: `Bearer ${token}` },
+            })
+            .then((response) => {
+              setUserList(response.data.contacts);
+              setUser(response.data)
+              console.log(response.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+        abrirFecharModal();
+
+        toast.success("Email editado com sucesso!");
+      })
+      .catch((error) => {
+        toast.error("Algo deu errado, tente novamente mais tarde!");
+        console.log(error);
+      });
+  }else{
 
     api
       .post(`/emails/create/${id}`, objectRequest, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        window.location.reload();
-        console.log(response);
+        api
+        .get(`/users/profile/${UserIdGet}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          setUserList(response.data.contacts);
+          setUser(response.data)
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
         abrirFecharModal();
 
-        toast.success("Email cadastrada com sucesso!");
+        toast.success("Email cadastrado com sucesso!");
       })
       .catch((error) => {
         toast.error("Algo deu errado, tente novamente mais tarde!");
         console.log(error);
       });
+  }
   }
 
   return (
@@ -56,9 +114,9 @@ function ModalNewEmail({ modalOpen, abrirFecharModal, id }) {
       overlayClassName="Overlay"
     >
       <div className="closeModal">
-        <h6 className="cadastroContact">Cadastrar novo Email</h6>
+        <h6 className="cadastroContact">{editFunction()} novo Email</h6>
       </div>
-      <form className="formModal" onSubmit={handleSubmit(registerTech)}>
+      <form className="formModal" onSubmit={handleSubmit(registerEmail)}>
         <div className="inputsContact">
           <label className="labelContact" htmlFor="statusNewContact">
             Email
@@ -67,9 +125,10 @@ function ModalNewEmail({ modalOpen, abrirFecharModal, id }) {
           <input
             className="inputNewContact"
             id="nameNewContact"
+            defaultValue={emailFunction()}
             {...register("email")}
           />
-          <p className="errorModal"> {errors.phones?.message}</p>
+          <p className="errorModal"> {errors.email?.message}</p>
         </div>
 
         <button className="cadastroContactBnt" type="submit">

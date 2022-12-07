@@ -1,0 +1,71 @@
+.ModalEditContact {
+  width: 297px;
+  height: 485px;
+  position: absolute;
+  overflow: auto;
+  background-color: #212529;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+
+.phonesAndEmailArea {
+  margin-top: 20px;
+}
+
+.inputNewContact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 243.66px;
+    height: 38.5px;
+    background: #343b41;
+    border: none;
+    border-radius: 3.20867px;
+    font-size: 34px;
+    color: #f8f9fa;
+    margin-right: 20px;
+    padding-left: 14px;
+  }
+
+.buttonsEditOrDelete {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editOrDelete {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.deleteButton {
+background-color:  #000046;;
+  margin-right: 10px;
+  color: white;
+  border: none;
+  width: 140px;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.editButton {
+  margin-right: 20px;
+  color: white;
+  background-color:  #000046;;
+  border: none;
+  width: 140px;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+@media (min-width: 430px) {
+  .ModalEditContact {
+    width: 389px;
+    height: 525px;
+  }
+}

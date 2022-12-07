@@ -1,16 +1,23 @@
 import { toast } from "react-toastify";
 import api from "../../services/api";
 import ModalNewPhone from "../NewPhoneModal";
-import {  useState } from "react";
+import { useContext, useState } from "react";
 import "./index.css";
 import ModalNewEmail from "../NewEmailModal";
+import ModalEditContact from "../EditContactModal";
+import { userListContext } from "../../providers/userList";
 
 function ContactCard({ id, name, emails, phones }) {
   const token = localStorage.getItem("@CadastroClientes:token");
-
+  const {  setUserList } = useContext(userListContext);
+  const UserId = localStorage.getItem("@CadastroClientes:id");
   const [modalOpenNewPhone, setModalOpenEditNewPhone] = useState(false);
   const [modalOpenNewEmail, setModalOpenEditNewEmail] = useState(false);
-  
+  const [modalOpenEditContact, setModalOpenEditContact] = useState(false);
+
+  function abrirFecharModalEditContact() {
+    setModalOpenEditContact(!modalOpenEditContact);
+  }
 
   function abrirFecharModalNewPhone() {
     setModalOpenEditNewPhone(!modalOpenNewPhone);
@@ -47,7 +54,23 @@ function ContactCard({ id, name, emails, phones }) {
       </div>
       <div className="buttons">
         <div>
-          <button className="buttonsContacts">Editar</button>
+          <button
+            className="buttonsContacts"
+            onClick={abrirFecharModalEditContact}
+          >
+            Editar
+          </button>
+          {modalOpenEditContact && (
+            <ModalEditContact
+              modalOpen={modalOpenEditContact}
+              abrirFecharModal={abrirFecharModalEditContact}
+              id={id}
+              phones={phones}
+              emails={emails}
+              name={name}
+  
+            />
+          )}
           <button
             className="buttonsContacts"
             onClick={() => {
@@ -55,27 +78,58 @@ function ContactCard({ id, name, emails, phones }) {
                 .delete(`/contacts/delete/${id}`, {
                   headers: { Authorization: `Bearer ${token}` },
                 })
-                .then( async (response) => {
+                .then( (response) => {
                   console.log(response);
-                  await window.location.reload();
-                  await toast.success("Contato apagado com sucesso!")
+                   
+                       
+                  api
+                  .get(`/users/profile/${UserId}`, {
+                    headers: { Authorization: `Bearer ${token}` },
+                  })
+                  .then((response) => {
+                      setUserList(response.data.contacts);
+                    console.log(response.data.contacts);
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+          
+  
+
                   
+                   toast.success("Contato apagado com sucesso!");
                 })
                 .catch((error) => {
                   toast.error("Algo deu errado, tente novamente mais tarde!");
                   console.log(error);
                 });
-              }}
+            }}
           >
             Apagar
           </button>
         </div>
 
-        <button className="buttonsContacts" onClick={abrirFecharModalNewPhone}>Adicionar Numero</button>
-        {modalOpenNewPhone && <ModalNewPhone modalOpen={modalOpenNewPhone} abrirFecharModal={abrirFecharModalNewPhone} owner="contato" id={id} />}
-        <button className="buttonsContacts" onClick={abrirFecharModalNewEmail}>Adicionar Email</button>
-        {modalOpenNewEmail && <ModalNewEmail modalOpen={modalOpenNewEmail} abrirFecharModal={abrirFecharModalNewEmail}  id={id} />}
-
+        <button className="buttonsContacts" onClick={abrirFecharModalNewPhone}>
+          Adicionar Numero
+        </button>
+        {modalOpenNewPhone && (
+          <ModalNewPhone
+            modalOpen={modalOpenNewPhone}
+            abrirFecharModal={abrirFecharModalNewPhone}
+            owner="contato"
+            id={id}
+          />
+        )}
+        <button className="buttonsContacts" onClick={abrirFecharModalNewEmail}>
+          Adicionar Email
+        </button>
+        {modalOpenNewEmail && (
+          <ModalNewEmail
+            modalOpen={modalOpenNewEmail}
+            abrirFecharModal={abrirFecharModalNewEmail}
+            id={id}
+          />
+        )}
       </div>
     </li>
   );

@@ -5,11 +5,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../services/api";
 import { toast } from "react-toastify";
+import { userListContext } from "../../providers/userList";
+import { useContext } from "react";
 
 Modal.setAppElement("#root");
 function ModalNewContact({ modalOpen, abrirFecharModal }) {
   const UserId = localStorage.getItem("@CadastroClientes:id");
   const token = localStorage.getItem("@CadastroClientes:token");
+  const { setUserList } = useContext(userListContext);
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome do contato é obrigatório"),
@@ -31,28 +34,41 @@ function ModalNewContact({ modalOpen, abrirFecharModal }) {
     resolver: yupResolver(formSchema),
   });
 
-  function registerTech(data) {
-    console.log(data)
+  function registerContact(data) {
+    console.log(data);
     const objectRequest = {
-        name: data.name,
-        emails: [data.emails],
-        phones: [data.phones],
-      };
+      name: data.name,
+      emails: [data.emails],
+      phones: [data.phones],
+    };
     api
       .post(`/contacts/create/${UserId}`, objectRequest, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-          window.location.reload()
-          console.log(response);
-          abrirFecharModal();
+        api
+          .get(`/users/profile/${UserId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then((response) => {
+            setUserList(response.data.contacts);
+            console.log(response.data.contacts);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
 
-          toast.success("Contato cadastrada com sucesso!");
-       
+        abrirFecharModal();
+
+        toast.success("Contato cadastrado com sucesso!");
       })
-      .catch((error) => {toast.error("Algo deu errado, tente novamente mais tarde!")  
-     console.log(error)
-    });
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        toast.error("Algo deu errado, tente novamente mais tarde!");
+        console.log(error);
+      });
   }
 
   return (
@@ -65,7 +81,7 @@ function ModalNewContact({ modalOpen, abrirFecharModal }) {
       <div className="closeModal">
         <h6 className="cadastroContact">Cadastrar novo contato</h6>
       </div>
-      <form className="formModal" onSubmit={handleSubmit(registerTech)}>
+      <form className="formModal" onSubmit={handleSubmit(registerContact)}>
         <div className="inputsContact">
           <label className="labelContact" htmlFor="nameNewContact">
             Nome
@@ -89,7 +105,7 @@ function ModalNewContact({ modalOpen, abrirFecharModal }) {
           <p className="errorModal"> {errors.emails?.message}</p>
 
           <label className="labelContact" htmlFor="statusNewContact">
-          Telefone
+            Telefone
           </label>
 
           <input

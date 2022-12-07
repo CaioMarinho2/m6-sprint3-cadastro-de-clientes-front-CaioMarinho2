@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { userListContext } from "../../providers/userList";
 import api from "../../services/api";
 import ContactCard from "../ContactCard";
 import ModalNewContact from "../NewContactModal";
@@ -7,8 +8,9 @@ import "./index.css";
 function ListaContatos() {
   const UserId = localStorage.getItem("@CadastroClientes:id");
   const token = localStorage.getItem("@CadastroClientes:token");
-  const [contactsList, setContactsList] = useState([]);
   const [modalOpenNewContact, setModalOpenEditNewContact] = useState(false);
+ 
+  const { userList, setUserList } = useContext(userListContext);
 
   function abrirFecharModalNewContact() {
     setModalOpenEditNewContact(!modalOpenNewContact);
@@ -20,21 +22,21 @@ function ListaContatos() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        setContactsList(response.data.contacts);
+        setUserList(response.data.contacts);
         console.log(response.data.contacts);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [UserId, token]);
+  }, [UserId, token, setUserList]);
 
   function contactsListRender() {
-    if (contactsList.length === 0) {
+    if (userList.length === 0) {
       return <h3 className="noContacts">Você ainda não possui nenhum contato</h3>;
     }
     return (
       <ul className="contactsList">
-        {contactsList.map(({ id, name, emails, phones }) => {
+        {userList.map(({ id, name, emails, phones }) => {
           return (
             <ContactCard
               key={id}

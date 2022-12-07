@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../services/api";
 import "./index.css";
 import { useForm } from "react-hook-form";
@@ -7,15 +7,18 @@ import * as yup from "yup";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import ModalNewPhone from "../NewPhoneModal";
+import { userListContext } from "../../providers/userList";
 
-function FormEdit(params) {
+function FormEdit() {
   const UserId = localStorage.getItem("@CadastroClientes:id");
   const token = localStorage.getItem("@CadastroClientes:token");
   const [modalOpenNewPhone, setModalOpenEditNewPhone] = useState(false);
   const [modalOpenNewPhoneEdit, setModalOpenEditNewPhoneEdit] = useState(false);
-  const [user, setUser] = useState({});
+  const { user, setUser } = useContext(userListContext);
+ 
 
   const [idEdit, setIdEdit] = useState("");
+  const [phoneUser, setPhoneUser] = useState("");
 
   function abrirFecharModalNewPhone() {
     setModalOpenEditNewPhone(!modalOpenNewPhone);
@@ -29,7 +32,7 @@ function FormEdit(params) {
 
   const formSchema = yup.object().shape({
     name: yup.string(),
-    email: yup.string().email(),
+    email: yup.string().email("Email inválido "),
     password: yup.string(),
   });
 
@@ -83,17 +86,29 @@ function FormEdit(params) {
       <form className="formEdit" onSubmit={handleSubmit(edit)}>
         <div className="divLabel">
           <label className="labelFormEdit">Nome</label>
-          <input className="editInput" defaultValue={user.name} {...register("name")}></input>
+          <input
+            className="editInput"
+            defaultValue={user.name}
+            {...register("name")}
+          ></input>
           <p className="error"> {errors.name?.message}</p>
         </div>
         <div className="divLabel">
           <label className="labelFormEdit">Email</label>
-          <input className="editInput" defaultValue={user.email} {...register("email")}></input>
+          <input
+            className="editInput"
+            defaultValue={user.email}
+            {...register("email")}
+          ></input>
           <p className="error"> {errors.email?.message}</p>
         </div>
         <div className="divLabel">
           <label className="labelFormEdit">Senha</label>
-          <input className="editInput" type="password" {...register("password")}></input>
+          <input
+            className="editInput"
+            type="password"
+            {...register("password")}
+          ></input>
           <p className="error"> {errors.password?.message}</p>
         </div>
         <div className="editButtonContainer">
@@ -117,6 +132,7 @@ function FormEdit(params) {
                 className="editTelefoneButton"
                 onClick={() => {
                   setIdEdit(id);
+                  setPhoneUser(phone);
                   abrirFecharModalNewPhoneEdit();
                 }}
               >
@@ -129,6 +145,7 @@ function FormEdit(params) {
                   abrirFecharModal={abrirFecharModalNewPhoneEdit}
                   id={idEdit}
                   edit={true}
+                  phone={phoneUser}
                 />
               )}
               <button
@@ -139,9 +156,20 @@ function FormEdit(params) {
                       headers: { Authorization: `Bearer ${token}` },
                     })
                     .then((response) => {
-                      window.location.reload();
+                      api
+                        .get(`/users/profile/${UserId}`, {
+                          headers: { Authorization: `Bearer ${token}` },
+                        })
+                        .then((response) => {
+                          setUser(response.data);
+                          console.log(response.data);
+                        })
+                        .catch((error) => {
+                          console.log(error);
+                        });
+
                       console.log(response);
-                      toast.success("Contato apagado com sucesso!");
+                      toast.success("Telefone apagado com sucesso!");
                     })
                     .catch((error) => {
                       toast.error(
