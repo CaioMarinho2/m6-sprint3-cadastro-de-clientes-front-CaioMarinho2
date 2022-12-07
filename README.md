@@ -8,6 +8,6 @@ Uma aplicação de gerenciamento de contatos, onde um usuário pode criar uma co
 
 2- Clone o repositório para a sua maquina
 
-4- Instale todas as dependências necessárias com o comando : `yarn`
+4- Instale todas as dependências necessárias com o comando : `yarn` ou `npm install`
 
 4- Por fim é só rodar a aplicação com o comando: `yarn start`
