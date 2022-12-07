@@ -41,7 +41,6 @@ function ModalNewEmail({ modalOpen, abrirFecharModal, id, edit, email }) {
   });
 
   function registerEmail(data) {
-    console.log(data);
     const objectRequest = {
       emails: [data.email],
     };
@@ -59,7 +58,6 @@ function ModalNewEmail({ modalOpen, abrirFecharModal, id, edit, email }) {
             .then((response) => {
               setUserList(response.data.contacts);
               setUser(response.data);
-              console.log(response.data);
             })
             .catch((error) => {
               console.log(error);
@@ -70,7 +68,6 @@ function ModalNewEmail({ modalOpen, abrirFecharModal, id, edit, email }) {
         })
         .catch((error) => {
           toast.error("Algo deu errado, tente novamente mais tarde!");
-          console.log(error);
         });
     } else {
       api
@@ -85,7 +82,6 @@ function ModalNewEmail({ modalOpen, abrirFecharModal, id, edit, email }) {
             .then((response) => {
               setUserList(response.data.contacts);
               setUser(response.data);
-              console.log(response.data);
             })
             .catch((error) => {
               console.log(error);
@@ -96,7 +92,6 @@ function ModalNewEmail({ modalOpen, abrirFecharModal, id, edit, email }) {
         })
         .catch((error) => {
           toast.error("Algo deu errado, tente novamente mais tarde!");
-          console.log(error);
         });
     }
   }

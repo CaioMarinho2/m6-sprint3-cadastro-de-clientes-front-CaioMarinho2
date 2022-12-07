@@ -23,7 +23,6 @@ function ListaContatos() {
       })
       .then((response) => {
         setUserList(response.data.contacts);
-        console.log(response.data.contacts);
       })
       .catch((error) => {
         console.log(error);

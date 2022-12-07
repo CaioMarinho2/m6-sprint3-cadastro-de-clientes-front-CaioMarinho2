@@ -24,8 +24,6 @@ function ModalNewPhone({
   if (owner === "contato") {
     UserId = id;
   }
-  console.log(id);
-  console.log(phone);
 
   function editFunction() {
     if (edit) {
@@ -58,12 +56,10 @@ function ModalNewPhone({
   });
 
   function EditPhoneOrCreate(data) {
-    console.log(data);
     const objectRequest = {
       phones: [data.phone],
     };
     if (edit) {
-      console.log();
       api
         .patch(`/phones/update/${id}`, data, {
           headers: { Authorization: `Bearer ${token}` },
@@ -78,7 +74,6 @@ function ModalNewPhone({
             .then((response) => {
               setUserList(response.data.contacts);
               setUser(response.data);
-              console.log(response.data);
             })
             .catch((error) => {
               console.log(error);
@@ -89,7 +84,6 @@ function ModalNewPhone({
         })
         .catch((error) => {
           toast.error("Algo deu errado, tente novamente mais tarde!");
-          console.log(error);
         });
     } else {
       api
@@ -104,7 +98,6 @@ function ModalNewPhone({
             })
             .then((response) => {
               setUserList(response.data.contacts);
-              console.log(response.data.contacts);
             })
             .catch((error) => {
               console.log(error);
@@ -115,7 +108,6 @@ function ModalNewPhone({
         })
         .catch((error) => {
           toast.error("Algo deu errado, tente novamente mais tarde!");
-          console.log(error);
         });
     }
   }

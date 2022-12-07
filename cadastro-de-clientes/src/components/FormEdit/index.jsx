@@ -44,7 +44,6 @@ function FormEdit() {
   });
 
   function edit(newInfos) {
-    console.log(newInfos);
     api
       .patch(`/users/update/${UserId}`, newInfos, {
         headers: { Authorization: `Bearer ${token}` },
@@ -74,7 +73,6 @@ function FormEdit() {
       })
       .then((response) => {
         setUser(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -161,20 +159,17 @@ function FormEdit() {
                         })
                         .then((response) => {
                           setUser(response.data);
-                          console.log(response.data);
                         })
                         .catch((error) => {
                           console.log(error);
                         });
 
-                      console.log(response);
                       toast.success("Telefone apagado com sucesso!");
                     })
                     .catch((error) => {
                       toast.error(
                         "Algo deu errado, tente novamente mais tarde!"
                       );
-                      console.log(error);
                     });
                 }}
               >

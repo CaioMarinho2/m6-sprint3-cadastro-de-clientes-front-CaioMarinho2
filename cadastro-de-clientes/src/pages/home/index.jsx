@@ -35,7 +35,7 @@ function HomePage() {
               })
               .then((response) => {
                 setUser(response.data);
-                console.log(response.data);
+
                 history.push("/editar");
               })
               .catch((error) => {

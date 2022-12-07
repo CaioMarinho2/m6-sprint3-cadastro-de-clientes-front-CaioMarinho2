@@ -77,16 +77,13 @@ function ContactCard({ id, name, emails, phones }) {
                 .delete(`/contacts/delete/${id}`, {
                   headers: { Authorization: `Bearer ${token}` },
                 })
-                .then((response) => {
-                  console.log(response);
-
+                .then(() => {
                   api
                     .get(`/users/profile/${UserId}`, {
                       headers: { Authorization: `Bearer ${token}` },
                     })
                     .then((response) => {
                       setUserList(response.data.contacts);
-                      console.log(response.data.contacts);
                     })
                     .catch((error) => {
                       console.log(error);
@@ -96,7 +93,6 @@ function ContactCard({ id, name, emails, phones }) {
                 })
                 .catch((error) => {
                   toast.error("Algo deu errado, tente novamente mais tarde!");
-                  console.log(error);
                 });
             }}
           >

@@ -35,7 +35,6 @@ function ModalNewContact({ modalOpen, abrirFecharModal }) {
   });
 
   function registerContact(data) {
-    console.log(data);
     const objectRequest = {
       name: data.name,
       emails: [data.emails],
@@ -52,7 +51,6 @@ function ModalNewContact({ modalOpen, abrirFecharModal }) {
           })
           .then((response) => {
             setUserList(response.data.contacts);
-            console.log(response.data.contacts);
           })
           .catch((error) => {
             console.log(error);
@@ -67,7 +65,6 @@ function ModalNewContact({ modalOpen, abrirFecharModal }) {
       })
       .catch((error) => {
         toast.error("Algo deu errado, tente novamente mais tarde!");
-        console.log(error);
       });
   }
 

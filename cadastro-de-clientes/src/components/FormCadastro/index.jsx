@@ -38,11 +38,10 @@ function FormCadastro() {
       password: userInfos.password,
       phones: [userInfos.phones],
     };
-    console.log(objectRequest);
+
     api
       .post("/users/create", objectRequest)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         toast.success("Cadastro feito com sucesso");
         history.push("/");
       })

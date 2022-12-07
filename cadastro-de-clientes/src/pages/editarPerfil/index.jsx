@@ -36,7 +36,6 @@ function EditarPerfil() {
             })
             .catch((error) => {
               toast.error("Algo deu errado, tente novamente mais tarde!");
-              console.log(error);
             });
         }}
       >

@@ -52,7 +52,6 @@ function ModalEditContact({
   });
 
   function EditContact(data) {
-    console.log(data);
     api
       .patch(`/contacts/update/${id}`, data, {
         headers: { Authorization: `Bearer ${token}` },
@@ -64,7 +63,6 @@ function ModalEditContact({
           })
           .then((response) => {
             setUserList(response.data.contacts);
-            console.log(response.data.contacts);
           })
           .catch((error) => {
             console.log(error);
@@ -76,7 +74,6 @@ function ModalEditContact({
       })
       .catch((error) => {
         toast.error("Algo deu errado, tente novamente mais tarde!");
-        console.log(error.response);
       });
   }
 
@@ -132,7 +129,6 @@ function ModalEditContact({
                           .then((response) => {
                             setUserList(response.data.contacts);
                             setUser(response.data);
-                            console.log(response.data);
                           })
                           .catch((error) => {
                             console.log(error);
@@ -145,7 +141,6 @@ function ModalEditContact({
                         toast.error(
                           "Algo deu errado, tente novamente mais tarde!"
                         );
-                        console.log(error.response);
                       });
                   }}
                 >
@@ -198,7 +193,6 @@ function ModalEditContact({
                           })
                           .then((response) => {
                             setUserList(response.data.contacts);
-                            console.log(response.data.contacts);
                           })
                           .catch((error) => {
                             console.log(error);
@@ -212,7 +206,6 @@ function ModalEditContact({
                         toast.error(
                           "Algo deu errado, tente novamente mais tarde!"
                         );
-                        console.log(error.response);
                       });
                   }}
                 >

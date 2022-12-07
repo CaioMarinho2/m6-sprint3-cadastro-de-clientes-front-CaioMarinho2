@@ -18,7 +18,6 @@ export const UserListProvider = ({ children }) => {
       .then((response) => {
         setUserList(response.data.contacts);
         setUser(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
